@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 240" width="900" height="240" role="img" aria-label="Syed Zia Hasan, Co-Founder, The Technostics Group">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07070d"/>
+      <stop offset="1" stop-color="#170a24"/>
+    </linearGradient>
+    <linearGradient id="sweep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00f0ff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#00f0ff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#00f0ff" stroke-opacity="0.07"/>
+    </pattern>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="1" fill="#000" fill-opacity="0.4"/>
+    </pattern>
+    <text id="name" x="450" y="128" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="56" letter-spacing="5">SYED ZIA HASAN</text>
+    <clipPath id="sliceA"><rect x="0" width="900" y="70" height="16">
+      <animate attributeName="y" values="70;108;84;62;100;78" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>
+      <animate attributeName="height" values="16;10;22;12;18;9" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>
+    </rect></clipPath>
+    <clipPath id="sliceB"><rect x="0" width="900" y="104" height="14">
+      <animate attributeName="y" values="104;74;96;118;66;90" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>
+      <animate attributeName="height" values="14;20;9;16;11;18" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/>
+    </rect></clipPath>
+    <style>
+      text { font-family: 'Courier New', Courier, monospace; }
+      .split-c { transform: translate(-2px, 0); opacity: .55; }
+      .split-m { transform: translate(2px, 0); opacity: .55; }
+      .burst-c { opacity: 0; animation: burstC 4.2s steps(1, end) infinite; }
+      .burst-m { opacity: 0; animation: burstM 4.2s steps(1, end) infinite; }
+      .jitter  { animation: jitter 4.2s steps(1, end) infinite; }
+      .blk     { opacity: 0; animation: blk 4.2s steps(1, end) infinite; }
+      .sweep   { animation: sweep 6s linear infinite; }
+      .dot     { animation: pulse 1.6s ease-in-out infinite; }
+      @keyframes burstC {
+        0%, 79% { opacity: 0; transform: translate(0, 0); }
+        80% { opacity: 1; transform: translate(-12px, 0); }
+        82% { opacity: 1; transform: translate(9px, 0); }
+        84% { opacity: 0; }
+        88% { opacity: 1; transform: translate(-6px, 0); }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      @keyframes burstM {
+        0%, 80% { opacity: 0; transform: translate(0, 0); }
+        81% { opacity: 1; transform: translate(11px, 0); }
+        83% { opacity: 1; transform: translate(-8px, 0); }
+        85% { opacity: 0; }
+        89% { opacity: 1; transform: translate(7px, 0); }
+        91% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      @keyframes jitter {
+        0%, 79% { transform: translate(0, 0); }
+        80% { transform: translate(3px, 0); }
+        82% { transform: translate(-4px, 1px); }
+        84% { transform: translate(0, 0); }
+        88% { transform: translate(2px, -1px); }
+        90%, 100% { transform: translate(0, 0); }
+      }
+      @keyframes blk {
+        0%, 79% { opacity: 0; }
+        80%, 83% { opacity: 1; }
+        84%, 87% { opacity: 0; }
+        88%, 90% { opacity: 1; }
+        91%, 100% { opacity: 0; }
+      }
+      @keyframes sweep { from { transform: translateY(-60px); } to { transform: translateY(260px); } }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+      @media (prefers-reduced-motion: reduce) {
+        .burst-c, .burst-m, .blk { animation: none; opacity: 0; }
+        .jitter, .sweep, .dot { animation: none; }
+      }
+    </style>
+  </defs>
+
+  <rect width="900" height="240" fill="url(#bg)"/>
+  <rect width="900" height="240" fill="url(#grid)"/>
+  <rect class="sweep" width="900" height="60" fill="url(#sweep)"/>
+
+  <!-- corner brackets -->
+  <g fill="none" stroke="#fcee0a" stroke-width="2.5" stroke-linecap="square">
+    <path d="M18 46V18H46"/><path d="M854 18H882V46"/>
+    <path d="M18 194V222H46"/><path d="M854 222H882V194"/>
+  </g>
+
+  <!-- status line -->
+  <circle class="dot" cx="40" cy="36" r="4" fill="#ff2a6d"/>
+  <text x="52" y="40" font-size="12" letter-spacing="2" fill="#00f0ff">ONLINE</text>
+  <text x="860" y="208" font-size="12" letter-spacing="2" fill="#00f0ff" text-anchor="end" fill-opacity="0.7">TTG</text>
+
+  <!-- the glitch: always-on RGB split, plus a burst every ~4 seconds -->
+  <g class="jitter">
+    <use xlink:href="#name" href="#name" class="split-c" fill="#00f0ff"/>
+    <use xlink:href="#name" href="#name" class="split-m" fill="#ff2a6d"/>
+    <use xlink:href="#name" href="#name" fill="#e8e8f4"/>
+  </g>
+  <g clip-path="url(#sliceA)"><use xlink:href="#name" href="#name" class="burst-c" fill="#00f0ff"/></g>
+  <g clip-path="url(#sliceB)"><use xlink:href="#name" href="#name" class="burst-m" fill="#ff2a6d"/></g>
+  <g>
+    <rect class="blk" x="168" y="92" width="64" height="5" fill="#00f0ff"/>
+    <rect class="blk" x="640" y="118" width="90" height="4" fill="#ff2a6d"/>
+    <rect class="blk" x="402" y="64" width="38" height="6" fill="#fcee0a"/>
+    <rect class="blk" x="720" y="84" width="52" height="4" fill="#00f0ff"/>
+  </g>
+
+  <text x="450" y="176" text-anchor="middle" font-size="18" letter-spacing="3" fill="#fcee0a">CO-FOUNDER // THE TECHNOSTICS GROUP</text>
+
+  <rect width="900" height="240" fill="url(#scan)" pointer-events="none"/>
+</svg>
