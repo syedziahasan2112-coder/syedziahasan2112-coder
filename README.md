@@ -43,7 +43,4 @@ I'm Syed Zia Hasan, co-founder of [The Technostics Group](https://technosticsgro
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-```text
-> connection stable
-> end of transmission_
-```
+<img src="assets/boot.svg" alt="Boot log: loading profile, co-founder at The Technostics Group, learning in public, ready" width="100%">
