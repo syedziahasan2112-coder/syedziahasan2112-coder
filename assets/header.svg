@@ -4,14 +4,29 @@
       <stop offset="0" stop-color="#07070d"/>
       <stop offset="1" stop-color="#170a24"/>
     </linearGradient>
-    <linearGradient id="sweep" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#00f0ff" stop-opacity="0.16"/>
+    <linearGradient id="radar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#00f0ff" stop-opacity="0.22"/>
       <stop offset="1" stop-color="#00f0ff" stop-opacity="0"/>
     </linearGradient>
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M30 0H0V30" fill="none" stroke="#00f0ff" stroke-opacity="0.07"/>
+    <pattern id="hex" width="56" height="100" patternUnits="userSpaceOnUse">
+      <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="#00f0ff" stroke-width="1.2"/>
+      <path d="M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34" fill="none" stroke="#00f0ff" stroke-width="1.2"/>
     </pattern>
+    <mask id="ping" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="240">
+      <rect width="900" height="240" fill="#000"/>
+      <circle cx="450" cy="120" r="0" fill="none" stroke="#fff" stroke-width="90">
+        <animate attributeName="r" from="0" to="560" dur="5s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-opacity" values="0;1;1;0" keyTimes="0;0.15;0.7;1" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="450" cy="120" r="0" fill="none" stroke="#fff" stroke-width="90">
+        <animate attributeName="r" from="0" to="560" dur="5s" begin="-2.5s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-opacity" values="0;1;1;0" keyTimes="0;0.15;0.7;1" dur="5s" begin="-2.5s" repeatCount="indefinite"/>
+      </circle>
+    </mask>
+    <filter id="neon" x="-10%" y="-60%" width="120%" height="220%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
     <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
       <rect width="4" height="1" fill="#000" fill-opacity="0.4"/>
     </pattern>
@@ -32,7 +47,11 @@
       .burst-m { opacity: 0; animation: burstM 4.2s steps(1, end) infinite; }
       .jitter  { animation: jitter 4.2s steps(1, end) infinite; }
       .blk     { opacity: 0; animation: blk 4.2s steps(1, end) infinite; }
-      .sweep   { animation: sweep 6s linear infinite; }
+      .neon    { animation: flicker 6s steps(1, end) infinite; }
+      .neon-a  { animation: flicker 7s steps(1, end) infinite; animation-delay: -1s; }
+      .neon-b  { animation: flicker 5s steps(1, end) infinite; animation-delay: -3.2s; }
+      .neon-c  { animation: flicker 8s steps(1, end) infinite; animation-delay: -5s; }
+      .neon-d  { animation: flicker 6.5s steps(1, end) infinite; animation-delay: -2.2s; }
       .dot     { animation: pulse 1.6s ease-in-out infinite; }
       @keyframes burstC {
         0%, 79% { opacity: 0; transform: translate(0, 0); }
@@ -67,23 +86,37 @@
         88%, 90% { opacity: 1; }
         91%, 100% { opacity: 0; }
       }
-      @keyframes sweep { from { transform: translateY(-60px); } to { transform: translateY(260px); } }
+      @keyframes flicker {
+        0%, 61%, 65%, 68%, 100% { opacity: 1; }
+        62% { opacity: .15; }
+        63% { opacity: .9; }
+        64% { opacity: .3; }
+        66% { opacity: .1; }
+        67% { opacity: .8; }
+      }
       @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
       @media (prefers-reduced-motion: reduce) {
         .burst-c, .burst-m, .blk { animation: none; opacity: 0; }
-        .jitter, .sweep, .dot { animation: none; }
+        .jitter, .dot, .neon, .neon-a, .neon-b, .neon-c, .neon-d { animation: none; }
       }
     </style>
   </defs>
 
   <rect width="900" height="240" fill="url(#bg)"/>
-  <rect width="900" height="240" fill="url(#grid)"/>
-  <rect class="sweep" width="900" height="60" fill="url(#sweep)"/>
+  <rect width="900" height="240" fill="url(#hex)" opacity="0.07"/>
+  <rect width="900" height="240" fill="url(#hex)" opacity="0.6" mask="url(#ping)"/>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 450 120" to="360 450 120" dur="7s" repeatCount="indefinite"/>
+    <path d="M450 120L970 120A520 520 0 0 0 859.8 -200.1Z" fill="url(#radar)"/>
+    <line x1="450" y1="120" x2="970" y2="120" stroke="#00f0ff" stroke-opacity="0.35"/>
+  </g>
 
   <!-- corner brackets -->
-  <g fill="none" stroke="#fcee0a" stroke-width="2.5" stroke-linecap="square">
-    <path d="M18 46V18H46"/><path d="M854 18H882V46"/>
-    <path d="M18 194V222H46"/><path d="M854 222H882V194"/>
+  <g fill="none" stroke="#fcee0a" stroke-width="2.5" stroke-linecap="square" filter="url(#neon)">
+    <path class="neon-a" d="M18 46V18H46"/>
+    <path class="neon-b" d="M854 18H882V46"/>
+    <path class="neon-c" d="M18 194V222H46"/>
+    <path class="neon-d" d="M854 222H882V194"/>
   </g>
 
   <!-- status line -->
@@ -106,7 +139,7 @@
     <rect class="blk" x="720" y="84" width="52" height="4" fill="#00f0ff"/>
   </g>
 
-  <text x="450" y="176" text-anchor="middle" font-size="18" letter-spacing="3" fill="#fcee0a">CO-FOUNDER // THE TECHNOSTICS GROUP</text>
+  <text class="neon" x="450" y="176" text-anchor="middle" font-size="18" letter-spacing="3" fill="#fcee0a" filter="url(#neon)">CO-FOUNDER // THE TECHNOSTICS GROUP</text>
 
   <rect width="900" height="240" fill="url(#scan)" pointer-events="none"/>
 </svg>
