@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/header.svg" alt="Syed Zia Hasan, Co-Founder, The Technostics Group" width="100%">
+<img src="assets/hero.svg" alt="Syed Zia Hasan, Co-Founder, The Technostics Group" width="100%">
 <img src="assets/typing.svg" alt="hi, i'm zia / cybersecurity-focused startup / learning in public / open to collaborate" width="100%">
 
 </div>
@@ -44,3 +44,4 @@ I'm Syed Zia Hasan, co-founder of [The Technostics Group](https://technosticsgro
 <img src="assets/divider.svg" alt="" width="100%">
 
 <img src="assets/boot.svg" alt="Boot log: loading profile, co-founder at The Technostics Group, learning in public, ready" width="100%">
+<img src="assets/footer.svg" alt="Neon cyberpunk skyline. End of transmission." width="100%">
